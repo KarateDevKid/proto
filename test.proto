@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package grpc_test;
+
+message Person {
+  int32 id = 1;
+  string name = 2;
+  string surname = 3;
+  uint32 age = 4;
+  enum Sex {
+    MALE = 0;
+    FEMALE = 1;
+  }
+  Sex sex = 5;
+}
+
+service PersonService {
+  rpc Get (Id) returns (Person) {}
+  rpc GetAll (Empty) returns (Persons) {}
+  rpc Add (Person) returns (Person);
+}
+
+message Id {
+  int32 id = 1;
+}
+
+message Empty {
+}
+
+message Persons {
+  repeated Person person = 1;
+}
+
